@@ -24,32 +24,32 @@ const app = {
     {
       name: "Mang tiền về cho mẹ",
       singer: "Đen vâu",
-      path: "/assets/music/song2.mp3",
-      image:"/assets/img/img2.png"
+      path: "./assets/music/song2.mp3",
+      image:"./assets/img/img2.png"
     },
     {
       name: "Đi về nhà ",
       singer: "Đen x JustaTee",
-      path:"/assets/music/song3.mp3",
-      image:"/assets/img/img3.png",
+      path:"./assets/music/song3.mp3",
+      image:"./assets/img/img3.png",
     },
     {
       name: "Trốn Tìm",
       singer: "Đen vâu",
-      path: "/assets/music/song4.mp3",
-      image:"/assets/img/img4.png",
+      path: "./assets/music/song4.mp3",
+      image:"./assets/img/img4.png",
     },
     {
       name: "Lối nhỏ",
       singer: "Đen vâu",
-      path: "/assets/music/song5.mp3",
-      image:"/assets/img/img5.png",
+      path: "./assets/music/song5.mp3",
+      image:"./assets/img/img5.png",
     },
     {
       name: "Bài này chill phết",
       singer: "Đen ft.MIN",
-      path:"/assets/music/song6.mp3",
-      image:"/assets/img/img6.png",
+      path:"./assets/music/song6.mp3",
+      image:"./assets/img/img6.png",
     }
   ],
 
