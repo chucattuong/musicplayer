@@ -19,7 +19,7 @@ const app = {
   isRepeat: false,
   songs: [
     {
-      name: "chu cát lượng",
+      name: "Thương em đến già",
       singer: "Lê Bảo Bình",
       path: "./assets/music/song1.mp3",
       image: "./assets/img/img1.png"
