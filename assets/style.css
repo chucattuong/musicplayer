@@ -1,16 +1,31 @@
-:root {
+/* :root {
   --primary-color: #ec1f55;
   --text-color: #333;
   --background-color: #fff;
   --control-color: rgb(97, 97, 97);
   --boxshadow-color: 0 2px 3px rgb(0 0 0 / 10%) ;
+} */
+
+:root {
+  --primary-color: #7b8f95;
+    --text-color: #576668;
+    --textActive-color: #16191a;
+    --background-color: #b5d2db;
+    --control-color: rgb(96 96 96);
+    --boxshadow-color: 0 2px 3px rgb(74 66 66 / 29%);
 }
 /* dark theme */
-[data-theme="dark"] {
+/* [data-theme="dark"] {
   --text-color: #fff;
   --background-color: #000;
   --control-color: #fff;
   --boxshadow-color: 0 2px 3px rgb(247 247 247 / 29%);
+} */
+[data-theme="dark"] {
+  --text-color: #fff;
+    --background-color: #2c4248;
+    --control-color: #fff;
+    --boxshadow-color: 0 2px 3px rgb(247 247 247 / 29%);
 }
 
 * {
@@ -102,7 +117,7 @@ header h2 {
 }
 .theme-switch {
    display: inline-block;
-   height: 15px;
+   height: 19px;
    position: relative;
    width: 30px;
 }
@@ -141,6 +156,7 @@ input:checked + .slider:before {
 }
 .slider.round:before {
   border-radius: 50%;
+  margin-top: 2px;
 }
 /* CONTROL */
 .control {
@@ -156,7 +172,23 @@ input:checked + .slider:before {
   font-size: 18px;
 }
 
-.control .btn.active {
+.control .btn .fa-redo , 
+.fa-step-backward ,
+.fa-step-forward ,
+.fa-random{
+  height: 30px;
+  width: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 50px;
+  box-shadow: var(--boxshadow-color);
+}
+
+.control .btn i:hover{
+  cursor: pointer;
+}
+
+.control .btn i.active {
   color: var(--primary-color);
 }
 
@@ -165,11 +197,13 @@ input:checked + .slider:before {
   height: 56px;
   border-radius: 50%;
   font-size: 24px;
-  color: #fff;
+  /* color: #fff; */
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: var(--primary-color);
+  
+  box-shadow: var(--boxshadow-color);
+  /* background-color: var(--primary-color); */
 }
 
 .progress {
@@ -219,7 +253,7 @@ input:checked + .slider:before {
 .song.active .option,
 .song.active .author,
 .song.active .title {
-  color: #fff;
+  color: var(--textActive-color);
 }
 
 .song .thumb {
@@ -228,6 +262,9 @@ input:checked + .slider:before {
   border-radius: 50%;
   background-size: cover;
   margin: 0 8px;
+}
+.song:hover{
+  cursor: pointer;
 }
 
 .song .body {
