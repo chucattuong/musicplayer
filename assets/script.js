@@ -9,11 +9,14 @@ const cdThumb = $('.cd-thumb ')
 const prevBtn = $('.btn-prev')
 const nextBtn = $('.btn-next')
 const randomBtn = $('.btn-random')
+const repeatBtn = $('.btn-repeat')
+const playlist = $('.playlist')
 
 const app = {
   currentIndex: 0,
   isPlaying: false,
   isRandom: false,
+  isRepeat: false,
   songs: [
     {
       name: "Thương em đến già",
@@ -55,9 +58,9 @@ const app = {
 
   render: function(){
     // map qua songs de render ra htmls
-    const htmls = this.songs.map(song =>{
+    const htmls = this.songs.map((song ,index) =>{
       return`
-        <div class="song">
+        <div class="song ${index === this.currentIndex ? 'active' : ''}" data-index='${index}'>
           <div class="thumb" style="background-image: url('${song.image}')"></div>
           <div class="body">
             <h3 class="title">${song.name}</h3>
@@ -70,7 +73,7 @@ const app = {
       `
       
     })
-    $('.playlist').innerHTML = htmls.join('');
+    playlist.innerHTML = htmls.join('');
   },
   defineProperties: function(){
     Object.defineProperty(this, 'currentSong', {
@@ -142,6 +145,8 @@ const app = {
         _this.nextSong()
       }
       audio.play()
+      _this.render()
+      _this.scrollToActiveSong()
     }
     // khi prev bai hat
     prevBtn.onclick = function(){
@@ -151,16 +156,59 @@ const app = {
         _this.prevSong()
       }
       audio.play()
+      _this.render()
+      _this.scrollToActiveSong()
     }
     // xu ly random / bat . tat
     randomBtn.onclick = function(e){
       _this.isRandom = !_this.isRandom
       randomBtn.classList.toggle('active', _this.isRandom)
     }
+    // xu ly lap lai song
+    repeatBtn.onclick = function(e){
+      _this.isRepeat = !_this.isRepeat
+      repeatBtn.classList.toggle('active', _this.isRepeat)
+
+    }
+
     // xu ly next song khi audio ended
     audio.onended = function(){
-      nextBtn.click()
+      // neu click button repeat
+      if(_this.isRepeat){
+        // phat lai bai hat 
+        audio.play()
+      //neu khong phai 
+      }else{
+        // play bai hat tiep theo
+        nextBtn.click()
+      }
     }
+    // lang nghe khi click vao playlist
+    playlist.onclick = function(e){
+      const songNode = e.target.closest('.song:not(.active)')
+      if (songNode || e.target.closest('.option')){
+        // xu ly khi click vao song
+        if(songNode){
+          _this.currentIndex = Number(songNode.dataset.index)
+          _this.loadCurrentSong()
+          _this.render()
+          audio.play()
+        }
+        // xu ly khi click vao option
+        if(e.target.closest('.option')){
+          
+        }
+
+      }
+    }
+  },
+  scrollToActiveSong: function(){
+    setTimeout(()=>{
+      $('.song.active').scrollIntoView({
+        behavior: 'smooth',
+        block: 'nearest'
+      })
+    },300)  
   },
   loadCurrentSong: function(){
     const heading = $('header h2 ')
